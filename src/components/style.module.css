@@ -165,6 +165,14 @@ table {
   border-radius: 5px;
   color: #e6f9f3;
 }
+.title{
+  font-size: 2rem;
+  position:absolute;
+  text-align: center;
+  top: 50px;
+  color: #1c2e10;
+}
+
 
 .addToCart {
   padding: 3px;

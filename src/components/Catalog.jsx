@@ -35,8 +35,6 @@ const addToCart = (id, amount, setCart) => {
   })
     .then((response) => {
       let json = response.json();
-      console.log("ответ на добавление в корзину");
-      console.log(json);
       if (!response.ok) {
         throw new Error("нет ответа json");
       }
@@ -142,8 +140,6 @@ class Table extends React.Component {
       return (
         <tr key={index}>
           <RenderRow key={index} data={row} keys={keys} />
-          {console.log("информация в строке = ")}
-          {console.log(row)}
           <InteractionBlock
             price={row.gprice}
             id={row.rid}
@@ -244,8 +240,6 @@ const Catalog = () => {
         "https://datainlife.ru/junior_task/get_products.php"
       );
       const json = await response.json();
-      console.log("изначальный вариант");
-      console.log(Array.from(json));
       var result = Array.from(json).filter((obj) => {
         return obj.rid === currentId;
       });
@@ -260,7 +254,7 @@ const Catalog = () => {
       <div className={style.grid}>
         <Cart cart={cart} />
         <SubsectionNav
-          onClick={() => setId("220")}
+          onClick={() => setId()}
           subsections={subsectionList}
         />
         <div className={style.styledFrame}>
@@ -269,11 +263,12 @@ const Catalog = () => {
               exact
               path="/"
               render={() => {
-                return <Redirect to={`/${ids[0]}`} />;
+                return <Redirect to={`/218`} />;
               }}
             />
             {subsectionList.map((subsection, i) => (
               <Route exact path={`/${ids[i]}`}>
+                <h2 className = {style.title}>{subsection}</h2>
                 <Table data={goods} subsectionId={ids[i]} />
               </Route>
             ))}
